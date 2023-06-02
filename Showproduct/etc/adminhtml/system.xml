@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="dev" translate="label" sortOrder="250">
+            <label>dev</label>
+        </tab>
+        <section id="dev_showproduct" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>dev-separator</class>
+            <label>SKU Manage</label>
+            <tab>dev</tab>
+            <resource>Dev_Showproduct::sku_config</resource>
+			<group id="storefront" translate="label" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Storefront</label>
+                <field id="sku_name" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SKU</label>
+                    <validate>required-entry</validate>
+                    <!-- <comment>This is news link</comment> -->
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

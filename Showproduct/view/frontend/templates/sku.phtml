@@ -1,0 +1,29 @@
+<?php
+    $logger = $block->getLoggerData();
+    echo '<pre>'; print_r($logger);
+    $helper = $this->helper('Dev\Showproduct\Helper\Data');
+    $array = $helper->getConfig();
+?>
+<div class="customgrid">
+    <?php
+        foreach($array as $value)
+        {
+            $_product = $block->getProductBySku($value);
+            // echo '<pre>'; print_r($_product->debug());exit;
+            $showUrl = $_product->getProductUrl();
+            $imgPath = $_product->getData('image');
+            $getUrl = $block->getUrl('media/catalog/product');
+            $productName = $_product->getName();
+            $productPrice = $_product->getFormattedPrice();
+    ?>
+    <div class="product">
+        <a class="product-link" href="<?php echo $showUrl; ?>"><img src="<?php echo $getUrl.$imgPath;?>" alt="NoImage" width="100%" /></a>        
+        <a class="product-link" href="<?php echo $showUrl; ?>"><p><?php echo $productName; ?></p></a>
+        <span class="product-price-label">As low as</span>
+        <span class="product-price"><?php echo $productPrice; ?></span>
+    </div>
+    <?php
+        }
+    ?>
+
+</div>

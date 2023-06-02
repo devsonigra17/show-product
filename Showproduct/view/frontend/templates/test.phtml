@@ -1,0 +1,94 @@
+<!-- <form method="post">
+    <label for="sku">Enter SKU:</label>
+    <input type="text" name="sku_name" id="sku"/>
+    <button type="submit" name="submit">Show</button>
+</form> -->
+<?php
+    $helper = $this->helper('Dev\Showproduct\Helper\Data');
+    $array = $helper->getConfig();
+?>
+<div class="customgrid">
+    <?php
+        // if(isset($_POST['submit']))
+        // {
+            // $sku = $_POST['sku_name'];
+            // $array = explode(",",$sku);
+            foreach($array as $value)
+            {
+                $_product = $block->getProductBySku($value);
+                // echo '<pre>'; print_r($_product->debug());exit;
+                $showUrl = $_product->getProductUrl();
+                $imgPath = $_product->getData('image');
+                $getUrl = $block->getUrl('media/catalog/product');
+                $productName = $_product->getName();
+                $productPrice = $_product->getFormattedPrice();
+        ?>
+        <div class="product">
+            <a class="product-link" href="<?php echo $showUrl; ?>"><img src="<?php echo $getUrl.$imgPath;?>" alt="NoImage" width="100%" /></a>        
+            <a class="product-link" href="<?php echo $showUrl; ?>"><p><?php echo $productName; ?></p></a>
+            <span class="product-price-label">As low as</span>
+            <span class="product-price"><?php echo $productPrice; ?></span>
+        </div>
+        <?php
+            }
+        // }
+        
+    ?>
+
+</div>
+<style>
+    a.product-link
+{
+    color:#333333;
+}
+span.product-price-label
+{
+    color:#666666; 
+    font-size:12px;
+}
+span.product-price{
+    font-weight:bold;
+}
+button{
+    margin-top:10px;
+}
+</style>
+<script>
+    require([
+    'jquery',
+    'slick'
+], function ($) {
+    jQuery(document).ready(function () {
+        jQuery(".customgrid").slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            responsive: [
+                {
+                    breakpoint: 1280,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+});
+</script>

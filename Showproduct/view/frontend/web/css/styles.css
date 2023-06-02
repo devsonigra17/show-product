@@ -1,0 +1,15 @@
+a.product-link
+{
+    color:#333333;
+}
+span.product-price-label
+{
+    color:#666666; 
+    font-size:12px;
+}
+span.product-price{
+    font-weight:bold;
+}
+button{
+    margin-top:10px;
+}
